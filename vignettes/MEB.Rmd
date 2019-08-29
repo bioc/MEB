@@ -48,6 +48,7 @@ enter:
 install.packages("BiocManager")
 BiocManager::install("MEB")
 ```
+
 Then, the MEB package is ready to load.
 ```{r}
 library(MEB)
@@ -62,21 +63,28 @@ In order to show the MEB workflow, the package includes the example data sets,
 which includes the simulation and real data for the same and different species. 
 The next we will show the datasets in the package.
 
-There are four datasets in the data subdirectory of MEB package, that is 
-**sim_data_sp**, **sim_data_dsp**, **real_data_sp** and **real_data_dsp**.
-**real_data_sp** is a real dataset for the same species, which comes from 
-*RNA-seq: an assessment of technical reproducibility and comparisonwith gene expression arrays* by Marioni J.C., Mason C.E., et al. (2008). Genome Res. 
-18(9), 1509–1517. **real_data_dsp** is a real dataset for the different 
-species, which comes from *The evolution of gene expression levels in mammalian organs* by Brawand, D., Soumillon, M., Necsulea, A. and Julien, P. et al. 
-(2011). Nature, 478, 343-348. **sim_data_sp** and **sim_data_dsp** are two
-simulation datasets for the same and different species, respectively. Refering 
-*A minimum enclosing ball method to detect differential expression genes for RNA-seq data* by Jiadi Zhu, Yan Zhou, Junhui Wang, Youlong Yang (2019, pending publication) for the generation procedure. 
+There are four datasets in the data subdirectory of MEB package, to consistent 
+with standard Bioconductor representations, we transform the format of dataset
+as *SummarizedExperiment*, please refer R package * SummarizedExperiment* for 
+details. The four datasets are **sim_data_sp**, **sim_data_dsp**, 
+**real_data_sp** and **real_data_dsp**. **real_data_sp** is a real dataset for 
+the same species, which comes from *RNA-seq: an assessment of technical 
+reproducibility and comparisonwith gene expression arrays* by Marioni J.C., 
+Mason C.E., et al. (2008). Genome Res. 18(9), 1509–1517. **real_data_dsp** is 
+a real dataset for the different species, which comes from *The evolution of 
+gene expression levels in mammalian organs* by Brawand, D., Soumillon, M., 
+Necsulea, A. and Julien, P. et al. (2011). Nature, 478, 343-348. 
+**sim_data_sp** and **sim_data_dsp** are two simulation datasets for the same 
+and different species, respectively. Refering *A minimum enclosing ball method 
+to detect differential expression genes for RNA-seq data* by Jiadi Zhu, 
+Yan Zhou, Junhui Wang, Youlong Yang (2019, pending publication) for the 
+generation procedure. 
 
 
 
 ```{r}
 data(sim_data_sp)
-head(sim_data_sp)
+sim_data_sp
 ```
 
 **sim_data_sp.RData** includes 2 columns, 
@@ -86,7 +94,7 @@ head(sim_data_sp)
 
 ```{r}
 data(real_data_sp)
-head(real_data_sp)
+real_data_sp
 ```
 
 **real_data_sp** includes 10 columns,
@@ -96,7 +104,7 @@ replicates;
 
 ```{r}
 data(sim_data_dsp)
-head(sim_data_dsp)
+sim_data_dsp
 ```
 
 **sim_data_dsp.RData** includes 4 columns, 
@@ -109,7 +117,7 @@ conserved genes.
 
 ```{r}
 data(real_data_dsp)
-head(real_data_dsp)
+real_data_dsp
 ```
 
 
@@ -129,10 +137,15 @@ function to train a model.
 
 
 1. Simulation data for the same species
+```{r, message = FALSE, warning = FALSE}
+library(SummarizedExperiment)
+```
+
+
 ```{r}
 data(sim_data_sp)
 gamma <- seq(1e-06,5e-05,1e-06)
-sim_model_sp <- MEB(countsTable=sim_data_sp, train_id=1:1000, gamma,
+sim_model_sp <- MEB(countsTable=assay(sim_data_sp), train_id=1:1000, gamma,
 nu = 0.01, reject_rate = 0.05, ds = FALSE)
 ```
 
@@ -142,7 +155,7 @@ nu = 0.01, reject_rate = 0.05, ds = FALSE)
 ```{r}
 data(real_data_sp)
 gamma <- seq(1e-06,5e-05,1e-06)
-real_model_sp <- MEB(countsTable=real_data_sp, train_id=1:530,
+real_model_sp <- MEB(countsTable=assay(real_data_sp), train_id=1:530,
 gamma, nu = 0.01, reject_rate = 0.1, ds = FALSE)
 ```
 
@@ -152,7 +165,7 @@ gamma, nu = 0.01, reject_rate = 0.1, ds = FALSE)
 ```{r}
 data(sim_data_dsp)
 gamma <- seq(1e-07,2e-05,1e-06)
-sim_model_dsp <- MEB(countsTable=sim_data_dsp, train_id=1:1000, gamma,
+sim_model_dsp <- MEB(countsTable=assay(sim_data_dsp), train_id=1:1000, gamma,
 nu = 0.01, reject_rate = 0.1, ds = TRUE)
 ```
 
@@ -161,7 +174,7 @@ nu = 0.01, reject_rate = 0.1, ds = TRUE)
 ```{r}
 data(real_data_dsp)
 gamma <- seq(5e-08,5e-07,1e-08)
-real_model_dsp <- MEB(countsTable=real_data_dsp, train_id=1:143, gamma,
+real_model_dsp <- MEB(countsTable=assay(real_data_dsp), train_id=1:143, gamma,
 nu = 0.01, reject_rate = 0.1, ds = TRUE)
 ```
 
@@ -180,7 +193,7 @@ follows:
 
 
 ```{r}
-sim_model_sp_pred <- predict(sim_model_sp$model, sim_data_sp)
+sim_model_sp_pred <- predict(sim_model_sp$model, assay(sim_data_sp))
 summary(sim_model_sp_pred)
 ```
 

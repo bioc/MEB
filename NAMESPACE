@@ -1,3 +1,4 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("e1071", "svm")
+import("SummarizedExperiment")
 

@@ -37,26 +37,27 @@ differential expression (DE) genes in the same or different species.
 }
 \examples{
 ## Simulation data for the same species.
+library(SummarizedExperiment)
 data(sim_data_sp)
 gamma <- seq(1e-06,5e-05,1e-06)
-sim_model_sp <- MEB(countsTable=sim_data_sp, train_id=1:1000, gamma,
-nu = 0.01, reject_rate = 0.05, ds = FALSE)
+sim_model_sp <- MEB(countsTable = assay(sim_data_sp), train_id=1:1000,
+gamma, nu = 0.01, reject_rate = 0.05, ds = FALSE)
 
 ## Real data for the same species.
 data(real_data_sp)
 gamma <- seq(1e-06,5e-05,1e-06)
-real_model_sp <- MEB(countsTable=real_data_sp, train_id=1:530,
+real_model_sp <- MEB(countsTable = assay(real_data_sp), train_id=1:530,
 gamma, nu = 0.01, reject_rate = 0.1, ds = FALSE)
 
 ## Simulation data for the different species.
 data(sim_data_dsp)
 gamma <- seq(1e-07,2e-05,1e-06)
-sim_model_dsp <- MEB(countsTable=sim_data_dsp, train_id=1:1000, gamma,
-nu = 0.01, reject_rate = 0.1, ds = TRUE)
+sim_model_dsp <- MEB(countsTable = assay(sim_data_dsp), train_id=1:1000,
+gamma, nu = 0.01, reject_rate = 0.1, ds = TRUE)
 
 ## Real data for the different species.
 data(real_data_dsp)
 gamma <- seq(5e-08,5e-07,1e-08)
-real_model_dsp <- MEB(countsTable=real_data_dsp, train_id=1:143, gamma,
-nu = 0.01, reject_rate = 0.1, ds = TRUE)
+real_model_dsp <- MEB(countsTable = assay(real_data_dsp), train_id=1:143,
+gamma, nu = 0.01, reject_rate = 0.1, ds = TRUE)
 }

@@ -34,6 +34,6 @@ Depends: R (>= 3.6.0)
 Suggests: knitr,rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
-Imports: e1071
+Imports: e1071, SummarizedExperiment
 biocViews: DifferentialExpression, GeneExpression, Normalization, 
            Classification

@@ -3,11 +3,21 @@
 \alias{MEB NEWS}
 \encoding{UTF-8}
 
-\section{Version 0.99.1}{\itemize{
+\section{Version 0.99.3}{\itemize{
 \item
   The latest one.
 }}
 
+\section{Version 0.99.2}{\itemize{
+\item
+  Update package to build NAMESPACE with roxygen 
+  and  use seq_len() in MEB function.
+}}
+
+\section{Version 0.99.1}{\itemize{
+\item
+  Update package.
+}}
 
 \section{Version 0.99.0}{\itemize{
 \item

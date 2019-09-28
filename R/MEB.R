@@ -44,6 +44,8 @@
 #' real_model_dsp <- MEB(countsTable = assay(real_data_dsp), train_id=1:143,
 #' gamma, nu = 0.01, reject_rate = 0.1, ds = TRUE)
 #' @export
+#' @importFrom e1071 svm
+#' @import SummarizedExperiment
 
 
 MEB <- function(countsTable, train_id, gamma, nu = 0.01, reject_rate = 0.1,
@@ -65,7 +67,7 @@ MEB <- function(countsTable, train_id, gamma, nu = 0.01, reject_rate = 0.1,
     trainData <- exchange_data[train_id,]
   }
 
-  for(k in seq(length(gamma))){
+  for(k in seq_len(length(gamma))){
     model <- e1071::svm(trainData, y = NULL, scale = FALSE,
                  type = "one-classification", kernel = "radial",
                  gamma = gamma[k], nu = nu, tolerance = 0.001,

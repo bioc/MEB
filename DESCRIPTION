@@ -1,7 +1,7 @@
-Package: MEB
+Package: NIMEB
 Type: Package
-Title: A Minimum Enclosing Ball (MEB) method to detect differential expression 
-    genes for RNA-seq data
+Title: A normalization-invariant minimum enclosing ball method
+      to detect differentially expressed genes for RNA-seq data
 Version: 1.1.0
 Author: Yan Zhou, Jiadi Zhu
 Maintainer: Jiadi Zhu <2160090406@email.szu.edu.cn>,
@@ -31,9 +31,9 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.6.0)
-Suggests: knitr,rmarkdown
+Suggests: knitr,rmarkdown,BiocStyle
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Imports: e1071, SummarizedExperiment
 biocViews: DifferentialExpression, GeneExpression, Normalization, 
            Classification

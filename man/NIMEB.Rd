@@ -32,7 +32,7 @@ selected gamma parameters in model NIMEB, "train_error" represents the
 corresponding train_error when the value of gamma changed.
 }
 \description{
-Use a normalization-invariant Minimum Enclosing Ball (NIMEB) 
+Use a normalization-invariant minimum enclosing ball (NIMEB) 
 method to discriminate differential expression (DE) genes in the same or 
 different species.
 }

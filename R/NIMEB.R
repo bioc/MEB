@@ -1,5 +1,5 @@
 #' Detect differential expression genes for RNA-seq data
-#' @description Use a normalization-invariant Minimum Enclosing Ball (NIMEB) 
+#' @description Use a normalization-invariant minimum enclosing ball (NIMEB) 
 #' method to discriminate differential expression (DE) genes in the same or 
 #' different species.
 #' @usage NIMEB(countsTable, train_id, gamma, nu = 0.01, reject_rate = 0.1,

@@ -1,17 +1,19 @@
-\name{NIMEB NEWS}
-\title{NIMEB NEWS}
-\alias{NIMEB NEWS}
+\name{MEB NEWS}
+\title{MEB NEWS}
+\alias{MEB NEWS}
 \encoding{UTF-8}
 
-\section{Version 1.1.0}{\itemize{
+\section{Version 1.2.0}{\itemize{
 \item
   The latest one.
 }}
 
-\section{Version 1.0.0}{\itemize{
+
+\section{Version 1.1.0}{\itemize{
 \item
-  Change the name of the package.
+  failed update.
 }}
+
 
 \section{Version 0.99.3}{\itemize{
 \item

@@ -1,11 +1,11 @@
 ---
-title: "NIMEB Tutorial"
+title: "MEB Tutorial"
 author: "Yan Zhou, Jiadi Zhu"
-package: NIMEB
+package: MEB
 date: "`r Sys.Date()`"
 output: BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{NIMEB Tutorial}
+  %\VignetteIndexEntry{MEB Tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,22 +14,22 @@ vignette: >
 # Introduction
 This package provides a method to identify differential expression genes in the
 same or different species. Given that non-DE genes have some similarities in 
-features, we build a minimum enclosing ball to cover those non-DE
-genes in feature space, then those DE genes, which are enormously
-different from non-DE genes, being regarded as outliers and rejected
+features, we build a normalization-invariant minimum enclosing ball (NIMEB) to 
+cover those non-DE genes in feature space, then those DE genes, which are 
+enormously different from non-DE genes, being regarded as outliers and rejected
 outside the ball. The method on this package are described in the article 
 *A normalization-invariant minimum enclosing ball method
 to detect differentially expressed genes for RNA-seq data* by Yan Zhou, 
 Bin Yang, Junhui Wang, Jiadi Zhu and Guoliang Tian (2020, pending 
 publication).
 
-The normalization-invariant minimum enclosing ball method is developed for 
-detecting differential expression genes in the same or different species. 
-Compared with existingmethods, it is no need for the NIMEB method to normalize 
-data in advance.Besides, the NIMEB method could be easily applied to the same 
-or different species data and without changing too much. We have implemented 
-the NIMEB method via an R function. We make an R package named NIMEB, and give 
-a tutorial for the package. The method consists two steps.
+The normalization-invariant minimum enclosing ball (NIMEB) method is developed 
+for detecting differential expression genes in the same or different species. 
+Compared with existing methods, it is no need  to normalize data in advance. 
+Besides, the NIMEB method could be easily applied to the same or different 
+species data and without changing too much. We have implemented the NIMEB 
+method via an R function. We make an R package named MEB, and give a tutorial 
+for the package. The method consists three steps.
 
 Step 1: Data Pre-processing;  
 
@@ -38,21 +38,21 @@ Step 2: Training a model for the training genes;
 Step 3: Discriminating a gene whether a DE gene.
 
 We employ a simulation and real dataset for the same and different species to 
-illustrate the usage of the NIMEB package.
+illustrate the usage of the MEB package.
 The programs can run under the Linux system and windows 10 system. The
 R versions should larger than 3.6.0.
 
 # Preparations
-To install the NIMEB package into your R environment, start R and
+To install the MEB package into your R environment, start R and
 enter:
 ```{r, eval=FALSE}
 install.packages("BiocManager")
-BiocManager::install("NIMEB")
+BiocManager::install("MEB")
 ```
 
-Then, the NIMEB package is ready to load.
+Then, the MEB package is ready to load.
 ```{r}
-library(NIMEB)
+library(MEB)
 ```
 
 
@@ -60,13 +60,12 @@ library(NIMEB)
 
 
 # Data format
-In order to show the NIMEB workflow, the package includes the example data 
-sets, which includes the simulation and real data for the same and different 
-species. The next we will show the datasets in the package.
+In order to show the MEB workflow, the package includes the example data sets, 
+which includes the simulation and real data for the same and different species. 
+The next we will show the datasets in the package.
 
-There are four datasets in the data subdirectory of NIMEB package, to 
-consistent with standard Bioconductor representations, we transform the format 
-of dataset
+There are four datasets in the data subdirectory of MEB package, to consistent 
+with standard Bioconductor representations, we transform the format of dataset
 as *SummarizedExperiment*, please refer R package * SummarizedExperiment* for 
 details. The four datasets are **sim_data_sp**, **sim_data_dsp**, 
 **real_data_sp** and **real_data_dsp**. **real_data_sp** is a real dataset for 
@@ -77,10 +76,10 @@ a real dataset for the different species, which comes from *The evolution of
 gene expression levels in mammalian organs* by Brawand, D., Soumillon, M., 
 Necsulea, A. and Julien, P. et al. (2011). Nature, 478, 343-348. 
 **sim_data_sp** and **sim_data_dsp** are two simulation datasets for the same 
-and different species, respectively. Refering *A minimum enclosing ball method 
-to detect differential expression genes for RNA-seq data* by Jiadi Zhu, 
-Yan Zhou, Junhui Wang, Youlong Yang (2019, pending publication) for the 
-generation procedure. 
+and different species, respectively. Refering *A normalization-invariant 
+minimum enclosing ball method to detect differentially expressed genes for 
+RNA-seq data* by Yan Zhou, Bin Yang, Junhui Wang, Jiadi Zhu and Guoliang Tian 
+(2020, pending publication) for the generation procedure. 
 
 
 

@@ -3,9 +3,14 @@
 \alias{MEB NEWS}
 \encoding{UTF-8}
 
+\section{Version 1.13.1}{\itemize{
+\item
+  Add new function scMEB().
+}}
+
 \section{Version 1.2.0}{\itemize{
 \item
-  The latest one.
+  The latest one before release.
 }}
 
 
